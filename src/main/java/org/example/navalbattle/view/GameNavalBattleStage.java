@@ -3,6 +3,8 @@ package org.example.navalbattle.view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,6 +28,8 @@ public class GameNavalBattleStage extends Stage {
         setTitle("Batalla naval"); // Sets the title of the stage
         setScene(scene); // Sets the scene for the stage
         setResizable(false); // Disallows resizing of the stage
+        getIcons().add(new Image(String.valueOf(getClass().getResource("/org/example/navalbattle/images/shipAutumFavIcon.jpg"))));
+
         show(); // Displays the stage
     }
 
@@ -45,7 +49,9 @@ public class GameNavalBattleStage extends Stage {
      * @throws IOException if an error occurs while creating the instance.
      */
     public static GameNavalBattleStage getInstance() throws IOException {
-        return GameNavalBattleStageHolder.INSTANCE = new GameNavalBattleStage();
+        return  GameNavalBattleStageHolder.INSTANCE != null?
+                GameNavalBattleStageHolder.INSTANCE :
+                (GameNavalBattleStageHolder.INSTANCE = new GameNavalBattleStage());
     }
 
     /**
