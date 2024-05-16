@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.example.navalbattle.view.GameNavalBattleLoginStage;
 import org.example.navalbattle.view.GameNavalBattleStage;
 import org.example.navalbattle.view.GameNavalBattleWelcomeStage;
 
@@ -33,7 +34,7 @@ public class GameNavalBattleWelcomeController {
     @FXML
     void onActionButtonPlay(ActionEvent event) throws IOException {
         GameNavalBattleWelcomeStage.deleteInstance();
-        GameNavalBattleStage.getInstance();
+        GameNavalBattleLoginStage.getInstance();
 
     }
 
