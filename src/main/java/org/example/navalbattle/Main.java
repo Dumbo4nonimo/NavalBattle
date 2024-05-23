@@ -34,6 +34,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Creates and initializes the main game stage
-        GameNavalBattleWelcomeStage.getInstance();
+        GameNavalBattleStage.getInstance();
     }
 }

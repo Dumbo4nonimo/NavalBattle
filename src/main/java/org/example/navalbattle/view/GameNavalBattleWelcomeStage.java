@@ -16,7 +16,7 @@ public class GameNavalBattleWelcomeStage extends Stage {
     public GameNavalBattleWelcomeStage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/navalBattleGame.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root, 850,500);
+        Scene scene = new Scene(root, 850, 500);
 
         // Configuring the stage
         Image img = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/shipEagleFavIcon.jpg"));
