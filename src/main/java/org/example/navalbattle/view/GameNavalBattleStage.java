@@ -22,7 +22,7 @@ public class GameNavalBattleStage extends Stage {
     public GameNavalBattleStage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/navalBattleGame.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root,600,600);
+        Scene scene = new Scene(root,1000,500);
 
         // Configuring the stage
         setTitle("Batalla naval"); // Sets the title of the stage

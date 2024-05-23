@@ -2,9 +2,7 @@ package org.example.navalbattle.model;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 
 import javafx.scene.image.ImageView;
@@ -23,26 +21,22 @@ public class Game implements IGame {
     private char[][] board; // register
     private int finalRow;
     private int finalCol;
+    private ImageView image;
+
 
     public void initializeBoard() {
         // Inicializar la matriz board con el tamaño adecuado
         board = new char[size][size];
-
         gridPane.setAlignment(Pos.CENTER);
-        gridPane.setPrefSize(35 * (size ), 35 * (size)); // Incrementar el tamaño del GridPane para dejar espacio para las etiquetas
+        Image img = new Image(getClass().getResource("/org/example/navalbattle/images/lose.png").toString());
 
-        // Agregar etiquetas para los números de las columnas
-        for (int col = 0; col < size; col++) {
-            Label label = new Label(String.valueOf(col + 1)); // Convertir el número a String y agregarlo como texto de la etiqueta
-            label.setAlignment(Pos.CENTER); // Centrar el texto en la etiqueta
-            gridPane.add(label, col + 1, 0); // Agregar la etiqueta en la fila 0 y la columna correspondiente
-        }
+        // Crea el ImageView para la imagen
+        ImageView imageView = new ImageView(img);
+        imageView.setFitWidth(35);
+        imageView.setFitHeight(35);
 
-        // Agregar etiquetas para las letras al inicio de las filas
-        for (int row = 0; row < size; row++) {
-            Label label = new Label(String.valueOf((char)('a' + row))); // Convertir el número a String y agregarlo como texto de la etiqueta
-            gridPane.add(label, 0, row + 1); // Agregar la etiqueta al inicio de la fila correspondiente
-        }
+        // No establecer un tamaño preferido fijo para el GridPane
+        //gridPane.setPrefSize(35 * size, 35 * size);
 
         // Agregar botones al GridPane
         for (int row = 0; row < size; row++) {
@@ -50,40 +44,47 @@ public class Game implements IGame {
                 board[row][col] = ' '; // Posición sin barcos
 
                 Button button = new Button();
-                button.setPrefWidth(39);
-                button.setPrefHeight(39);
+                button.setPrefWidth(35);
+                button.setPrefHeight(35);
 
                 // Agregar el botón al GridPane en la posición correspondiente
-                gridPane.add(button, col + 1, row + 1); // Incrementar la fila y la columna en 1 para dejar espacio para las etiquetas
+                gridPane.add(button, col, row); // No incrementar la fila y la columna
 
                 // Asignar una función al botón usando una expresión lambda
                 int finalRow = row;
                 int finalCol = col;
                 button.setOnAction(event -> handleButtonClick(finalRow, finalCol));
+
             }
         }
     }
 
-
     public void handleButtonClick(int finalRow, int finalCol) {
+        try {
+            // Crea la imagen
+            Image img;
+            img = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/lose.png"));
 
-         //Crea la imagen
-        Image img =  new Image(getClass().getResourceAsStream("org/example/navalbattle/model/lose.png"));
+            // Crea el ImageView para la imagen
+            ImageView imageView = new ImageView(img);
+            imageView.setFitWidth(20);
+            imageView.setFitHeight(20);
 
-         //Crea el ImageView para la imagen
-        ImageView imageView = new ImageView(img);
-        imageView.setFitWidth(35);
-        imageView.setFitHeight(35);
-
-        // Obtiene el botón correspondiente del GridPane
-        Node node = gridPane.getChildren().get(finalRow * size + finalCol);
-        if (node instanceof Button) {
-            Button clickedButton = (Button) node;
+            // Obtiene el botón correspondiente del GridPane
+            Button clickedButton = (Button) gridPane.getChildren().get(finalRow * gridPane.getRowCount() + finalCol);
 
             // Establece la imagen en el botón
             clickedButton.setGraphic(imageView);
+            System.out.println(STR."La posicion es: fila\{finalRow + 1}col\{finalCol + 1}");
+
+            clickedButton.setDisable(true);
+
+        } catch (Exception e) {
+            // Maneja el error, por ejemplo, mostrando un mensaje de error
+            System.err.println("Error al cargar la imagen: " + e.getMessage());
         }
     }
+
 
     public void setGridPane(GridPane gridPane) {
         this.gridPane = gridPane;
@@ -93,16 +94,4 @@ public class Game implements IGame {
         this.size = size;
     }
 }
-
-
-    /*   public void printBoard() {
-        System.out.println("  A B C D E F G H I J");
-        for (int row = 0; row < size; row++) {
-            System.out.print(row + 1 + " "); // row numbers
-            for (int col = 0; col < size; col++) {
-                System.out.print(board[row][col] + " "); // content of each position
-            }
-            System.out.println();
-        }
-    }*/
 
