@@ -20,7 +20,7 @@ public class GameNavalBattleStage extends Stage {
      * @throws IOException if an error occurs while loading the FXML file for the game interface.
      */
     public GameNavalBattleStage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/game-naval-battle-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/navalBattlelGame.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 

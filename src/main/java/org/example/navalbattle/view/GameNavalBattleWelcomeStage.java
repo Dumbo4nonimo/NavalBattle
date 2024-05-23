@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -15,7 +14,7 @@ import java.io.IOException;
 public class GameNavalBattleWelcomeStage extends Stage {
 
     public GameNavalBattleWelcomeStage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/game-naval-battle-Welcome-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/navalBattleGame.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root, 850,500);
 

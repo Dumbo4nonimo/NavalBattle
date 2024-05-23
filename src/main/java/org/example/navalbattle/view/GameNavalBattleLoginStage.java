@@ -11,25 +11,32 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+
 public class GameNavalBattleLoginStage extends Stage {
+
     public GameNavalBattleLoginStage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/game-naval-battle-Login-Stage-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/navalBattlelGame.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root, 500,360);
+
+        Scene scene = new Scene(root, 500, 360);
 
         // Configuring the stage
-        Image img = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/loginShip.jpg"));
-        ImageView imgView = new ImageView(img);
         setTitle("Registrate"); // Sets the title of the stage
         setScene(scene); // Sets the scene for the stage
         setResizable(false); // Disallows resizing of the stage
         initStyle(StageStyle.UNIFIED);
 
+        // Load and add the image to the scene
+        Image img = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/loginShip.jpg"));
+        ImageView imgView = new ImageView(img);
         ((Pane) root).getChildren().add(0, imgView);
 
-        getIcons().add(new Image(String.valueOf(getClass().getResource("/org/example/navalbattle/images/shipAutumFavIcon.jpg"))));
+        // Set the stage icon
+        getIcons().add(new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/shipAutumFavIcon.jpg")));
+
         show(); // Displays the stage
     }
+
 
     /**
      * Closes the instance of GameNavalBattleStage.

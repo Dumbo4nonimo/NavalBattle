@@ -40,7 +40,7 @@ public class GameNavalBattleWelcomeController {
 
     @FXML
     public void switchToScene1(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/navalbattle/game-naval-battle-Welcome-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/example/navalbattle/navalBattleGame.fxml"));
         Scene scene1 = new Scene(root, 850,500);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // to obtain the current stage
         stage.setScene(scene1);
