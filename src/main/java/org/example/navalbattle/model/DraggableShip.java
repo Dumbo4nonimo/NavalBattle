@@ -8,6 +8,8 @@ import javafx.scene.shape.Rectangle;
 
 public class DraggableShip extends Rectangle {
 
+    private double lastX;
+    private double lastY;
     private double xOffset;
     private double yOffset;
     private GridPane shipGridPane; // Referencia al GridPane
@@ -23,22 +25,31 @@ public class DraggableShip extends Rectangle {
     }
 
     private final EventHandler<MouseEvent> mousePressedHandler = event -> {
+        // Guardar la posición del barco al presionar el mouse
+        lastX = getTranslateX();
+        lastY = getTranslateY();
+
         // Obtener la posición inicial del mouse cuando se presiona
-        xOffset = event.getSceneX() - getTranslateX();
-        yOffset = event.getSceneY() - getTranslateY();
+        xOffset = event.getSceneX() - lastX;
+        yOffset = event.getSceneY() - lastY;
     };
 
-    private final EventHandler<MouseEvent> mouseDraggedHandler = event -> {
-        // Actualizar la posición del barco mientras se arrastra
-        double newX = event.getSceneX() - xOffset;
-        double newY = event.getSceneY() - yOffset;
+    public final EventHandler<MouseEvent> mouseDraggedHandler = event -> {
+        // Coordenadas del mouse en relación con el GridPane
+        double mouseX = event.getSceneX() - xOffset;
+        double mouseY = event.getSceneY() - yOffset;
 
-        // Limitar el movimiento dentro del GridPane
-        if (newX >= 0 && newX <= shipGridPane.getWidth() - getWidth()) {
-            setTranslateX(newX);
-        }
-        if (newY >= 0 && newY <= shipGridPane.getHeight() - getHeight()) {
-            setTranslateY(newY);
-        }
+        // Coordenadas máximas permitidas para el barco
+        double maxX = shipGridPane.getWidth() - (10+getWidth());
+        double maxY = shipGridPane.getHeight() - 7.3*getHeight();
+
+        // Ajustar las nuevas coordenadas para mantener el barco dentro del GridPane
+        mouseX = Math.min(Math.max(0, mouseX), maxX);
+        mouseY = Math.min(Math.max(0, mouseY), maxY);
+
+        // Establecer las nuevas coordenadas del barco
+        setTranslateX(mouseX);
+        setTranslateY(mouseY);
     };
+
 }

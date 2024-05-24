@@ -23,7 +23,7 @@ public class BattleShipBoard {
     private void initializeShips() {
         ships = new Ship[] {
                 new Ship(0, 0, 3, true),  // Barco de longitud 3 en posición (0, 0)
-                new Ship(5, 2, 4, true),  // Barco de longitud 4 en posición (5, 2)
+                new Ship(0, 5, 4, true),  // Barco de longitud 4 en posición (5, 2)
                 // Agrega más barcos según sea necesario
         };
         for (Ship ship : ships) {

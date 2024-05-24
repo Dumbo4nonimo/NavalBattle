@@ -75,7 +75,7 @@ public class Game implements IGame {
 
             // Establece la imagen en el botón
             clickedButton.setGraphic(imageView);
-            System.out.println(STR."La posicion es: fila\{finalRow + 1}col\{finalCol + 1}");
+            System.out.println(STR."La posicion es: fila \{finalRow + 1} col \{finalCol + 1}");
 
             clickedButton.setDisable(true);
 
