@@ -15,7 +15,7 @@ import java.io.IOException;
 public class GameNavalBattleLoginStage extends Stage {
 
     public GameNavalBattleLoginStage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/navalBattlelGame.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/navalBattlelGame1.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root, 500, 360);
