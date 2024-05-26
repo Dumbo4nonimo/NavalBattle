@@ -24,12 +24,19 @@ public class BattleShipBoard {
 
     private void initializeShips() {
         ships = new Ship[] {
-                new Ship(0, 0, 3, true),  // Barco de longitud 3 en posición (0, 0)
-                new Ship(5, 0, 4, true),  // Barco de longitud 4 en posición (5, 0)
-                // Agrega más barcos según sea necesario
+                new Ship(0, 0, 3, true, 0),  // Barco de longitud 3 en posición (0, 0)
+                new Ship(0, 0, 3, true, 0),  // Barco de longitud 3 en posición (0, 0)
+                new Ship(5, 0, 4, true, 1),// Barco de longitud 4 en posición (5, 0)
+                new Ship(0,2, 2, true, 2 ), // Barco de longitud 2 en posición (0, 2)
+                new Ship(0,2, 2, true, 2 ), // Barco de longitud 2 en posición (0, 2)
+                new Ship(0,2, 2, true, 2 ), // Barco de longitud 2 en posición (0, 2)
+                new Ship(5,2, 1, true, 3 ), // Barco de longitud 1 en posición (5, 2)
+                new Ship(5,2, 1, true, 3 ), // Barco de longitud 1 en posición (5, 2)
+                new Ship(5,2, 1, true, 3 ), // Barco de longitud 1 en posición (5, 2)
+                new Ship(5,2, 1, true, 3 ) // Barco de longitud 1 en posición (5, 2)
         };
         for (int i = 0; i < ships.length ; i++) {
-            drawShip(ships[i], i);
+            drawShip(ships[i], ships[i].getType());
         }
     }
 
@@ -49,15 +56,7 @@ public class BattleShipBoard {
 
         // Agregar el barco al GridPane con colspan y rowspan para superponerlo
         shipGridPane.add(draggableShip, col, row, ship.isHorizontal() ? ship.getLength() : 1, ship.isHorizontal() ? 1 : ship.getLength());
-        ShipPane horizontalShip = new ShipPane(3, true);
-        addShipToGrid(shipGridPane, horizontalShip, 0, 4);
 
-    }
-
-    private void addShipToGrid(GridPane gridPane, ShipPane ship, int col, int row) {
-        int colSpan = ship.isHorizontal() ? ship.getLength() : 1;
-        int rowSpan = ship.isHorizontal() ? 1 : ship.getLength();
-        gridPane.add(ship, col, row, colSpan, rowSpan);
     }
 
     // Método para inicializar el grid con celdas azules
