@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.Region?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.navalbattle.controller.GameNavalBattleController" fx:id="gamePane">
-   <HBox spacing="60" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" alignment="CENTER">
-      <Region fx:id="leftSpacer" HBox.hgrow="ALWAYS"/>
-      <GridPane fx:id="gridPane">
+<AnchorPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.navalbattle.controller.GameNavalBattleController">
+   <HBox alignment="CENTER" spacing="60" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+      <GridPane fx:id="gridPane" prefHeight="400.0" prefWidth="424.0">
          <padding>
-            <Insets top="10" right="10" bottom="10" left="10"/>
+            <Insets bottom="10" left="10" right="10" top="10" />
          </padding>
       </GridPane>
-      <GridPane fx:id="shipGridPane">
+      <GridPane fx:id="shipGridPane" layoutX="300.0" layoutY="10.0" prefHeight="301.0" prefWidth="12.0">
          <padding>
-            <Insets top="10" right="10" bottom="10" left="10"/>
+            <Insets bottom="10" left="10" right="10" top="10" />
          </padding>
       </GridPane>
-      <Region fx:id="rightSpacer" HBox.hgrow="ALWAYS"/>
    </HBox>
 </AnchorPane>
