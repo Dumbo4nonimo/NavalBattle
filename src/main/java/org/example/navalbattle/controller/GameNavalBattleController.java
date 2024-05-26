@@ -1,6 +1,7 @@
 package org.example.navalbattle.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 
@@ -10,6 +11,7 @@ import org.example.navalbattle.model.Game;
 
 public class GameNavalBattleController {
 
+    public AnchorPane gamePane;
     @FXML
     private HBox hbox;
     @FXML
