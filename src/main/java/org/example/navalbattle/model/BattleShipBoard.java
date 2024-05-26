@@ -16,22 +16,24 @@ public class BattleShipBoard {
 
     }
     public void initializeBoard() {
-        initializeGrid(); // Inicializar el grid
+        shipGridPane.setLayoutX(1000); // Move 50 pixels to the right
+        shipGridPane.setLayoutY(1000);
+        initializeGrid();// Inicializar el grid
         initializeShips(); // Inicializar los barcos
     }
 
     private void initializeShips() {
         ships = new Ship[] {
                 new Ship(0, 0, 3, true),  // Barco de longitud 3 en posición (0, 0)
-                new Ship(0, 5, 4, true),  // Barco de longitud 4 en posición (5, 2)
+                new Ship(5, 0, 4, true),  // Barco de longitud 4 en posición (5, 0)
                 // Agrega más barcos según sea necesario
         };
-        for (Ship ship : ships) {
-            drawShip(ship);
+        for (int i = 0; i < ships.length ; i++) {
+            drawShip(ships[i], i);
         }
     }
 
-    private void drawShip(Ship ship) {
+    private void drawShip(Ship ship, int shipType) {
         int cellSize = 30;
         int x = ship.getX() * cellSize;
         int y = ship.getY() * cellSize;
@@ -42,16 +44,25 @@ public class BattleShipBoard {
         int row = ship.getY();
         int col = ship.getX();
 
-        DraggableShip draggableShip = new DraggableShip(x, y, width, height, shipGridPane);
+        DraggableShip draggableShip = new DraggableShip(x, y, width, height, shipGridPane, shipType);
         draggableShip.setFill(Color.GRAY);
 
         // Agregar el barco al GridPane con colspan y rowspan para superponerlo
         shipGridPane.add(draggableShip, col, row, ship.isHorizontal() ? ship.getLength() : 1, ship.isHorizontal() ? 1 : ship.getLength());
+        ShipPane horizontalShip = new ShipPane(3, true);
+        addShipToGrid(shipGridPane, horizontalShip, 0, 4);
+
+    }
+
+    private void addShipToGrid(GridPane gridPane, ShipPane ship, int col, int row) {
+        int colSpan = ship.isHorizontal() ? ship.getLength() : 1;
+        int rowSpan = ship.isHorizontal() ? 1 : ship.getLength();
+        gridPane.add(ship, col, row, colSpan, rowSpan);
     }
 
     // Método para inicializar el grid con celdas azules
     public void initializeGrid() {
-        for (int row = 0; row < size; row++) {
+        for (int row = 8; row < size+8; row++) {
             for (int col = 0; col < size; col++) {
                 Rectangle cell = new Rectangle(30, 30);
                 cell.setFill(Color.BLUE);
