@@ -1,9 +1,12 @@
 package org.example.navalbattle.model;
 
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class DraggableShip extends Rectangle {
@@ -12,23 +15,46 @@ public class DraggableShip extends Rectangle {
     private double lastY;
     private double xOffset;
     private double yOffset;
-    private GridPane shipGridPane; // Referencia al GridPane
+    private GridPane shipGridPane;
+    @FXML // Referencia al GridPane
+    private AnchorPane gamePane;
 
     public DraggableShip(double x, double y, double width, double height, GridPane shipGridPane, int shipType) {
         super(x, y, width, height);
-        this.shipGridPane = shipGridPane; // Asignar la referencia al GridPane
+        this.shipGridPane = shipGridPane;// Asignar la referencia al GridPane
         setFill(Color.GRAY);
+
 
         // Manejar eventos de ratón para arrastrar el barco
         setOnMousePressed(mousePressedHandler);
         if (shipType == 0) {
             setOnMouseDragged(mouseDraggedHandler1);
+            setOnMouseReleased(mouseReleasedHandler1);
+            setStroke(Color.RED);
+            setStrokeWidth(3);
+            setSmooth(true);
         }
         else if(shipType == 1){
             setOnMouseDragged(mouseDraggedHandler2);
+            setOnMouseReleased(mouseReleasedHandler2);
+            setStroke(Color.BLUE);
+            setStrokeWidth(3);
+            setSmooth(true);
         }
-
-        setOnMouseReleased(mouseReleasedHandler);
+        else if (shipType == 2) {
+            setOnMouseDragged(mouseDraggedHandler3);
+            setOnMouseReleased(mouseReleasedHandler3);
+            setStroke(Color.GREEN);
+            setStrokeWidth(3);
+            setSmooth(true);
+        }
+        else if (shipType == 3) {
+            setOnMouseDragged(mouseDraggedHandler4);
+            setOnMouseReleased(mouseReleasedHandler4);
+            setStroke(Color.YELLOW);
+            setStrokeWidth(3);
+            setSmooth(true);
+        }
     }
 
     private final EventHandler<MouseEvent> mousePressedHandler = event -> {
@@ -51,8 +77,8 @@ public class DraggableShip extends Rectangle {
         // Definir los límites específicos donde el objeto puede moverse
         double minX = 0;  // Coordenada X mínima
         double maxX = 220; // Coordenada X máxima
-        double minY = 30;  // Coordenada Y mínima
-        double maxY = 310; // Coordenada Y máxima
+        double minY = 60;  // Coordenada Y mínima
+        double maxY = 340; // Coordenada Y máxima
 
         // Ajustar las nuevas coordenadas para mantener el barco dentro de los límites definidos
         mouseX = Math.min(Math.max(minX, mouseX), maxX);
@@ -70,9 +96,9 @@ public class DraggableShip extends Rectangle {
 
         // Definir los límites específicos donde el objeto puede moverse
         double minX = -155;  // Coordenada X mínima
-        double maxX = 35; // Coordenada X máxima
-        double minY = 30;  // Coordenada Y mínima
-        double maxY = 310; // Coordenada Y máxima
+        double maxX = 65; // Coordenada X máxima
+        double minY = 60;  // Coordenada Y mínima
+        double maxY = 340; // Coordenada Y máxima
 
         // Ajustar las nuevas coordenadas para mantener el barco dentro de los límites definidos
         mouseX = Math.min(Math.max(minX, mouseX), maxX);
@@ -88,13 +114,15 @@ public class DraggableShip extends Rectangle {
         double mouseX = event.getSceneX() - xOffset;
         double mouseY = event.getSceneY() - yOffset;
 
-        // Coordenadas máximas permitidas para el barco
-        double maxX = shipGridPane.getWidth() - (20+ getWidth());
-        double maxY = shipGridPane.getHeight() - 6.3*getHeight();
+        // Definir los límites específicos donde el objeto puede moverse
+        double minX = 0;  // Coordenada X mínima
+        double maxX = 220; // Coordenada X máxima
+        double minY = 30;  // Coordenada Y mínima
+        double maxY = 310; // Coordenada Y máxima
 
-        // Ajustar las nuevas coordenadas para mantener el barco dentro del GridPane
-        mouseX = Math.min(Math.max(-3, mouseX), maxX);
-        mouseY = Math.min(Math.max(0, mouseY), maxY);
+        // Ajustar las nuevas coordenadas para mantener el barco dentro de los límites definidos
+        mouseX = Math.min(Math.max(minX, mouseX), maxX);
+        mouseY = Math.min(Math.max(minY, mouseY), maxY);
 
         // Establecer las nuevas coordenadas del barco
         setTranslateX(mouseX);
@@ -106,37 +134,64 @@ public class DraggableShip extends Rectangle {
         double mouseX = event.getSceneX() - xOffset;
         double mouseY = event.getSceneY() - yOffset;
 
-        // Coordenadas máximas permitidas para el barco
-        double maxX = shipGridPane.getWidth() - (20+ getWidth());
-        double maxY = shipGridPane.getHeight() - 6.3*getHeight();
+        // Definir los límites específicos donde el objeto puede moverse
+        double minX = -155;  // Coordenada X mínima
+        double maxX = 120; // Coordenada X máxima
+        double minY = 30;  // Coordenada Y mínima
+        double maxY = 310; // Coordenada Y máxima
 
-        // Ajustar las nuevas coordenadas para mantener el barco dentro del GridPane
-        mouseX = Math.min(Math.max(-3, mouseX), maxX);
-        mouseY = Math.min(Math.max(0, mouseY), maxY);
+        // Ajustar las nuevas coordenadas para mantener el barco dentro de los límites definidos
+        mouseX = Math.min(Math.max(minX, mouseX), maxX);
+        mouseY = Math.min(Math.max(minY, mouseY), maxY);
 
         // Establecer las nuevas coordenadas del barco
         setTranslateX(mouseX);
         setTranslateY(mouseY);
     };
 
-    private final EventHandler<MouseEvent> mouseReleasedHandler = event -> {
+    private final EventHandler<MouseEvent> mouseReleasedHandler1 = event -> {
         // Ajustar la posición del barco para que se ajuste a la cuadrícula
-        snapToGrid();
+        snapToGrid(0);
+    };
+    private final EventHandler<MouseEvent> mouseReleasedHandler2 = event -> {
+        // Ajustar la posición del barco para que se ajuste a la cuadrícula
+        snapToGrid(1);
+    };
+    private final EventHandler<MouseEvent> mouseReleasedHandler3 = event -> {
+        // Ajustar la posición del barco para que se ajuste a la cuadrícula
+        snapToGrid(2);
+    };
+    private final EventHandler<MouseEvent> mouseReleasedHandler4 = event -> {
+        // Ajustar la posición del barco para que se ajuste a la cuadrícula
+        snapToGrid(3);
     };
 
     public double[] getRectanglePosition() {
         return new double[]{getTranslateX(), getTranslateY()};
     }
 
-    private void snapToGrid() {
+    private void snapToGrid(int shipType) {
         double[] position = getRectanglePosition();
         double currentX = position[0];
         double currentY = position[1];
-
+        int offsetX = 0;
+        int offsetY = 0;
+        System.out.println(position[0]+","+position[1]);
+        if (shipType == 0) {
+            offsetY = 60;
+        }
+        else if (shipType == 1){
+            offsetX = -150;
+            offsetY = 60;
+        }
+        else if (shipType == 2){
+            offsetY = 30;
+        }
+        else if (shipType == 3) {
+            offsetX = -160;
+            offsetY = 30;
+        }
         double cellSize = 30; // Adjust this according to your grid cell size
-        int offsetX = 0; // Adjust if your grid starts at a different position
-        int offsetY = 0; // Adjust if your grid starts at a different position
-
         int colIndex = (int) Math.round((currentX - offsetX) / cellSize);
         int rowIndex = (int) Math.round((currentY - offsetY) / cellSize);
 
@@ -148,6 +203,7 @@ public class DraggableShip extends Rectangle {
 
         setTranslateX(newX);
         setTranslateY(newY);
+
     }
 
 }
