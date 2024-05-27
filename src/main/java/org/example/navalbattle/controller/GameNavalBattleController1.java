@@ -19,12 +19,12 @@ import java.io.IOException;
         public void initialize() throws IOException {
             try {
                 game1 = new Game();
-                int boardSize=10;
+                int boardSize = 10;
                 game1.setSize(boardSize);
+                game1.setBattleShipBoard(shipBoard1);
                 game1.setGridPane(gridPane1);
-                game1.initializeBoard(1);
-                shipBoard1= new BattleShipBoard(shipGridPane1,boardSize);
-                shipBoard1.initializeBoard();
+                game1.setShipGridPane(shipGridPane1); // Pasa el shipGridPane a la clase Game
+                game1.initializeBoard(0);
             }
             catch (Exception e) {
                 System.err.println("Error handling the button click: " + e.getMessage());

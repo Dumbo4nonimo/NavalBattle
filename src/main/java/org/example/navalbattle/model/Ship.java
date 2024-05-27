@@ -34,4 +34,7 @@ public class Ship {
     public int getType() {
         return type;
     }
+    public void toggleOrientation() {
+        this.isHorizontal = !this.isHorizontal;
+    }
 }
