@@ -71,4 +71,10 @@ public class BattleShipBoard {
             }
         }
     }
+    public Ship[] getShips() {
+        return ships;}
+
+    public GridPane getGridPane() {
+        return shipGridPane;
+    }
 }
