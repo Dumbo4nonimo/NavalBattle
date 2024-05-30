@@ -1,5 +1,9 @@
 package org.example.navalbattle.model;
 
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
@@ -11,6 +15,7 @@ public class BattleShipBoard {
     private GridPane shipGridPane;
     private int size;
     private Ship[] ships;
+    private Button startBattleButton;
 
     /**
      * Constructs a BattleShipBoard object.
@@ -18,9 +23,10 @@ public class BattleShipBoard {
      * @param shipGridPane the GridPane to place the ships on
      * @param size         the size of the board
      */
-    public BattleShipBoard(GridPane shipGridPane, int size) {
+    public BattleShipBoard(GridPane shipGridPane, int size, Button startBattleButton) {
         this.shipGridPane = shipGridPane;
         this.size = size;
+        this.startBattleButton = startBattleButton;
     }
 
     /**
@@ -37,16 +43,16 @@ public class BattleShipBoard {
      */
     private void initializeShips() {
         ships = new Ship[]{
-                new Ship(0, 0, 3, false, 0),  // Ship of length 3 at position (0, 0)
-                new Ship(0, 0, 3, true, 0),   // Ship of length 3 at position (0, 0)
-                new Ship(5, 0, 4, true, 1),   // Ship of length 4 at position (5, 0)
-                new Ship(0, 2, 2, true, 2),   // Ship of length 2 at position (0, 2)
-                new Ship(0, 2, 2, true, 2),   // Ship of length 2 at position (0, 2)
-                new Ship(0, 2, 2, true, 2),   // Ship of length 2 at position (0, 2)
-                new Ship(5, 2, 1, true, 3),   // Ship of length 1 at position (5, 2)
-                new Ship(5, 2, 1, true, 3),   // Ship of length 1 at position (5, 2)
-                new Ship(5, 2, 1, true, 3),   // Ship of length 1 at position (5, 2)
-                new Ship(5, 2, 1, true, 3)    // Ship of length 1 at position (5, 2)
+                new Ship(5, 1, 3, true, 0),  // Ship of length 3
+                new Ship(5, 1, 3, true, 0),   // Ship of length 3
+                new Ship(0, 0, 4, true, 1),   // Ship of length 4
+                new Ship(0, 2, 2, true, 2),   // Ship of length 2
+                new Ship(0, 2, 2, true, 2),   // Ship of length 2
+                new Ship(0, 2, 2, true, 2),   // Ship of length 2
+                new Ship(9, 0, 1, true, 3),   // Ship of length 1
+                new Ship(9, 0, 1, true, 3),   // Ship of length 1
+                new Ship(9, 0, 1, true, 3),   // Ship of length 1
+                new Ship(9, 0, 1, true, 3)    // Ship of length 1
         };
         for (Ship ship : ships) {
             drawShip(ship, ship.getType());
@@ -70,11 +76,12 @@ public class BattleShipBoard {
         int row = ship.getY();
         int col = ship.getX();
 
-        DraggableShip draggableShip = new DraggableShip(x, y, width, height, shipGridPane, ship);
+        DraggableShip draggableShip = new DraggableShip(x, y, width, height, shipGridPane, ship, shipType, startBattleButton);
 
         // Add the ship to the GridPane with colspan and rowspan to span multiple cells
         shipGridPane.add(draggableShip, col, row, ship.isHorizontal() ? ship.getLength() : 1, ship.isHorizontal() ? 1 : ship.getLength());
     }
+
 
     /**
      * Gets the array of ships on the board.
