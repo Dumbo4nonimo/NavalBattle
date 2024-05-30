@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import org.example.navalbattle.view.GameStage;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.Random;
@@ -21,6 +22,7 @@ public class Game implements IGame {
     private int size;
     private char[][] board;
     private BattleShipBoard battleShipBoard;
+    private Button startBattleButton;
 
     /**
      * Creates a grid of images on the game board.
@@ -46,11 +48,10 @@ public class Game implements IGame {
      * @param tablero the type of board to initialize
      * @throws IOException if an error occurs during initialization
      */
-    public void initializeBoard(int tablero) throws IOException {
+    public void initializeBoard(int tablero, Button startBattleButton) throws IOException {
         createGridImages(); // Calls the method to create the GridPane of images
-
         try {
-            battleShipBoard = new BattleShipBoard(shipGridPane, size);
+            battleShipBoard = new BattleShipBoard(shipGridPane, size, startBattleButton);
             battleShipBoard.initializeBoard(); // Initializes the ship board
 
             if (tablero == 0) {
@@ -145,6 +146,14 @@ public class Game implements IGame {
      */
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public void setStartBattleButton(Button startBattleButton){
+        this.startBattleButton = startBattleButton;
+    }
+
+    public Button getStartBattleButton (){
+        return startBattleButton;
     }
 
     /**

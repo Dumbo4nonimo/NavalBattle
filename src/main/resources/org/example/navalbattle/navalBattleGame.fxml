@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.navalbattle.controller.GameNavalBattleController">
-   <HBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+   <HBox alignment="CENTER" layoutX="-38.0" prefHeight="400.0" prefWidth="575.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0">
       <children>
          <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
             <columnConstraints>
@@ -35,8 +37,14 @@
                <RowConstraints minHeight="30.0" percentHeight="100.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
             </rowConstraints>
          </GridPane>
+         <Button fx:id="startBattleButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="Start The Battle" translateY="-200.0">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+         </Button>
          <GridPane fx:id="shipGridPane" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
             <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
@@ -59,7 +67,45 @@
                <RowConstraints minHeight="30.0" percentHeight="100.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                <RowConstraints minHeight="30.0" percentHeight="100.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                <RowConstraints minHeight="30.0" percentHeight="100.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+               <RowConstraints minHeight="30.0" percentHeight="100.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+               <RowConstraints minHeight="30.0" percentHeight="100.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+               <RowConstraints minHeight="30.0" percentHeight="100.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
             </rowConstraints>
+            <children>
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+               <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="5" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="4" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.rowIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="7" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="6" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="9" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="10" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="8" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.rowIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            </children>
          </GridPane>
       </children>
    </HBox>

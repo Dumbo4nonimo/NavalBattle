@@ -3,8 +3,11 @@ package org.example.navalbattle.controller;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.control.Button;
 import org.example.navalbattle.model.BattleShipBoard;
 import org.example.navalbattle.model.Game;
+
+import java.awt.*;
 
 public class GameNavalBattleController {
 
@@ -12,6 +15,8 @@ public class GameNavalBattleController {
     private HBox hbox;
     @FXML
     private GridPane gridPane, shipGridPane;
+    @FXML
+    private Button startBattleButton;
 
     private Game game;
     private BattleShipBoard shipBoard;
@@ -22,8 +27,9 @@ public class GameNavalBattleController {
             int boardSize = 10;
             game.setSize(boardSize);
             game.setGridPane(gridPane);
+            game.setStartBattleButton(startBattleButton);
             game.setShipGridPane(shipGridPane); // Pasa el shipGridPane a la clase Game
-            game.initializeBoard(0);
+            game.initializeBoard(0, startBattleButton);
             game.createGridImages(); // Llama al método para crear el GridPane de imágenes
         } catch (Exception e) {
             System.err.println("Error inicializando el juego: " + e.getMessage());
