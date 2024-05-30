@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.util.List;
+
 /**
  * Represents a draggable ship on the game board.
  */
@@ -23,6 +25,11 @@ public class DraggableShip extends Rectangle {
     private GridPane shipGridPane;
     private Ship ship;
     private Button startBattleButton;
+    private List<double[]> type0PositionLists;
+    private List<double[]> type1PositionLists;
+    private List<double[]> type2PositionLists;
+    private List<double[]> type3PositionLists;
+    private List<double[]> finalPositionsLists;
     @FXML // Reference to the GridPane
     private AnchorPane gamePane;
     private boolean isDraggable = true;
@@ -87,12 +94,7 @@ public class DraggableShip extends Rectangle {
     }
 
     public void disableDragging() {
-
-
-            isDraggable = false;
-
-         // Disable dragging
-
+            isDraggable = false; // Disable dragging
     }
 
     private final EventHandler<MouseEvent> mousePressedHandler = event -> {
@@ -225,6 +227,18 @@ public class DraggableShip extends Rectangle {
         if (!movement) return;
         // Adjust the ship's position to snap to the grid
         snapToGrid();
+        if (ship.getType() == 0){
+            type0PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 0, 3});
+        }
+        else if (ship.getType() == 1){
+            type1PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 0, 4});
+        }
+        else if (ship.getType() == 2){
+            type2PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 0, 2});
+        }
+        else if (ship.getType() == 3){
+            type3PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 0, 1});
+        }
         disableDragging();
     };
 
@@ -267,7 +281,31 @@ public class DraggableShip extends Rectangle {
             // Redraw the ship with the new orientation
             shipGridPane.add(this, ship.getX(), ship.getY(), ship.isHorizontal() ? ship.getLength() : 1, ship.isHorizontal() ? 1 : ship.getLength());
             disableMovement();
+            if (ship.getType() == 0){
+                type0PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 3});
+            }
+            else if (ship.getType() == 1){
+                type1PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 4});
+            }
+            else if (ship.getType() == 2){
+                type2PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 2});
+            }
+            else if (ship.getType() == 3){
+                type3PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 1});
+            }
+            disableDragging();
+            finalPositionsLists.add(getLastElement(type0PositionLists));
+            finalPositionsLists.add(getLastElement(type1PositionLists));
+            finalPositionsLists.add(getLastElement(type2PositionLists));
+            finalPositionsLists.add(getLastElement(type3PositionLists));
         }
+    }
+
+    public static double[] getLastElement(List<double[]> list) {
+        if (list == null || list.isEmpty()) {
+            return null; // or throw an exception based on your needs
+        }
+        return list.get(list.size() - 1);
     }
 }
 
