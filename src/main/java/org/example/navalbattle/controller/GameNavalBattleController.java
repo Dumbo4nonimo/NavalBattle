@@ -30,7 +30,7 @@ public class GameNavalBattleController {
             game.setStartBattleButton(startBattleButton);
             game.setShipGridPane(shipGridPane); // Pasa el shipGridPane a la clase Game
             game.initializeBoard(0, startBattleButton);
-            game.createGridImages(); // Llama al método para crear el GridPane de imágenes
+
         } catch (Exception e) {
             System.err.println("Error inicializando el juego: " + e.getMessage());
         }

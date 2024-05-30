@@ -3,6 +3,7 @@ package org.example.navalbattle.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import org.example.navalbattle.model.BattleShipBoard;
 import org.example.navalbattle.model.Game;
 
 import java.io.IOException;
