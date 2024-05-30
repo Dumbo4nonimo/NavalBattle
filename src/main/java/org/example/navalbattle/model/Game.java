@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import org.example.navalbattle.view.GameStage;
 
 import java.io.IOException;
+import java.util.Random;
 
 /**
  * Represents the game logic and UI for the naval battle game.
@@ -77,7 +78,9 @@ public class Game implements IGame {
                         button.setPrefWidth(35);
                         button.setPrefHeight(35);
                         gridPane.add(button, col, row);
-
+                        Random random = new Random();
+                        int randomHitCol = random.nextInt(11);
+                        int randomHitRow = random.nextInt(11);
                         int finalRow = row;
                         int finalCol = col;
                         button.setOnAction(event -> handleButtonClick1(finalRow, finalCol));
@@ -106,8 +109,11 @@ public class Game implements IGame {
             Button clickedButton = (Button) gridPane.getChildren().get((finalRow * size + 1) + finalCol);
             clickedButton.setGraphic(imageView);
             System.out.println("The position is: row " + (finalRow + 1) + " col " + (finalCol + 1));
-            attack(finalRow, finalCol, false);
-
+            int hitCol,hitRow;
+            Random random = new Random();
+            hitRow = random.nextInt(11);
+            hitCol = random.nextInt(11);
+            attack(hitCol, hitRow, false);
             clickedButton.setDisable(true);
         } catch (Exception e) {
             System.err.println("Error handling the button click: " + e.getMessage());
