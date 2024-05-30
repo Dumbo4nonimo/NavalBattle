@@ -18,29 +18,15 @@ import java.util.Random;
 public class Game implements IGame {
 
     @FXML
-    private GridPane gridPane, shipGridPane, gridImages;
+    private GridPane gridPane, shipGridPane,grid2;
     private int size;
     private char[][] board;
     private BattleShipBoard battleShipBoard;
-    private Button startBattleButton;
+    private Button startBattleButton,winTheGame;
 
     /**
      * Creates a grid of images on the game board.
      */
-    public void createGridImages() {
-        gridImages = new GridPane(); // Initialize the GridPane
-        gridPane.setAlignment(Pos.TOP_RIGHT);
-        for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col++) {
-                // Add images to the gridImages
-                Image img = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/loginShip.jpg"));
-                ImageView imageView = new ImageView(img);
-                imageView.setFitWidth(20);
-                imageView.setFitHeight(20);
-                gridImages.add(imageView, col, row);
-            }
-        }
-    }
 
     /**
      * Initializes the game board and ships based on the given tablero type.
@@ -49,7 +35,6 @@ public class Game implements IGame {
      * @throws IOException if an error occurs during initialization
      */
     public void initializeBoard(int tablero, Button startBattleButton) throws IOException {
-        createGridImages(); // Calls the method to create the GridPane of images
         try {
             battleShipBoard = new BattleShipBoard(shipGridPane, size, startBattleButton);
             battleShipBoard.initializeBoard(); // Initializes the ship board
@@ -85,6 +70,7 @@ public class Game implements IGame {
                         int finalRow = row;
                         int finalCol = col;
                         button.setOnAction(event -> handleButtonClick1(finalRow, finalCol));
+
                     }
                 }
             }
@@ -124,7 +110,7 @@ public class Game implements IGame {
     /**
      * Sets the GridPane for the game.
      *
-     * @param gridPane the GridPane to set
+     * @param gridPane the GridPane to f
      */
     public void setGridPane(GridPane gridPane) {
         this.gridPane = gridPane;

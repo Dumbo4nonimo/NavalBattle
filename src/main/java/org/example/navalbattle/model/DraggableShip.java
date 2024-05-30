@@ -26,6 +26,8 @@ public class DraggableShip extends Rectangle {
     @FXML // Reference to the GridPane
     private AnchorPane gamePane;
     private boolean isDraggable = true;
+    private boolean movement=true;
+
 
     /**
      * Constructs a DraggableShip object.
@@ -84,9 +86,12 @@ public class DraggableShip extends Rectangle {
         setSmooth(true);
     }
 
-    private void disableDragging() {
-        isDraggable = false; // Disable dragging
+    public void disableDragging() {
 
+
+            isDraggable = false;
+
+         // Disable dragging
 
     }
 
@@ -217,10 +222,15 @@ public class DraggableShip extends Rectangle {
     };
 
     private final EventHandler<MouseEvent> mouseReleasedHandler = event -> {
-        if (!isDraggable) return;
+        if (!movement) return;
         // Adjust the ship's position to snap to the grid
         snapToGrid();
+        disableDragging();
     };
+
+    public void disableMovement() {
+        boolean movement = false;
+    }
 
     /**
      * Adjusts the ship's position to snap to the grid.
@@ -240,7 +250,7 @@ public class DraggableShip extends Rectangle {
      * @param ship  the ship data object
      */
     private void handleShipDoubleClick(MouseEvent event, Ship ship) {
-        if (!isDraggable) return;
+        if (!movement) return;
         if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
             // Change the ship's orientation
             ship.toggleOrientation();
@@ -256,6 +266,7 @@ public class DraggableShip extends Rectangle {
 
             // Redraw the ship with the new orientation
             shipGridPane.add(this, ship.getX(), ship.getY(), ship.isHorizontal() ? ship.getLength() : 1, ship.isHorizontal() ? 1 : ship.getLength());
+            disableMovement();
         }
     }
 }

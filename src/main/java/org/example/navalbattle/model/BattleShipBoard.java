@@ -1,11 +1,7 @@
 package org.example.navalbattle.model;
 
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 
 /**
  * Represents the game board for the battleship game.
@@ -28,6 +24,8 @@ public class BattleShipBoard {
         this.size = size;
         this.startBattleButton = startBattleButton;
     }
+
+
 
     /**
      * Initializes the board layout and the ships.
@@ -56,6 +54,7 @@ public class BattleShipBoard {
         };
         for (Ship ship : ships) {
             drawShip(ship, ship.getType());
+
         }
     }
 
@@ -82,6 +81,9 @@ public class BattleShipBoard {
         shipGridPane.add(draggableShip, col, row, ship.isHorizontal() ? ship.getLength() : 1, ship.isHorizontal() ? 1 : ship.getLength());
     }
 
+    public GridPane getShipGridPane() {
+        return shipGridPane;
+    }
 
     /**
      * Gets the array of ships on the board.
