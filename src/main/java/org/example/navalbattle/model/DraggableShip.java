@@ -11,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,10 +25,10 @@ public class DraggableShip extends Rectangle {
     private GridPane shipGridPane;
     private Ship ship;
     private Button startBattleButton;
-    private List<double[]> type0PositionLists = new ArrayList<>();
-    private List<double[]> type1PositionLists = new ArrayList<>();
-    private List<double[]> type2PositionLists = new ArrayList<>();
-    private List<double[]> type0PositionLists = new ArrayList<>();
+    private List<double[]> type0PositionLists;
+    private List<double[]> type1PositionLists;
+    private List<double[]> type2PositionLists;
+    private List<double[]> type3PositionLists;
     private List<double[]> finalPositionsLists;
     @FXML // Reference to the GridPane
     private AnchorPane gamePane;
@@ -296,7 +295,6 @@ public class DraggableShip extends Rectangle {
             }
             disableDragging();
             finalPositionsLists.add(getLastElement(type0PositionLists));
-            System.out.println(finalPositionsLists.get(0)[0] + " , " + finalPositionsLists.get(0)[1]);
             finalPositionsLists.add(getLastElement(type1PositionLists));
             finalPositionsLists.add(getLastElement(type2PositionLists));
             finalPositionsLists.add(getLastElement(type3PositionLists));

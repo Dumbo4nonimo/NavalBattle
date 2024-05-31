@@ -54,7 +54,6 @@
                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
             </columnConstraints>
             <rowConstraints>
                <RowConstraints maxHeight="30.0" minHeight="0.0" percentHeight="100.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
@@ -93,10 +92,7 @@
                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="9" GridPane.rowIndex="2" />
                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="8" GridPane.rowIndex="1" />
                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="10" GridPane.rowIndex="2" />
                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="9" />
-               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="10" GridPane.rowIndex="1" />
-               <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="10" />
                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="8" />
                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
