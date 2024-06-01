@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,16 +26,29 @@ public class DraggableShip extends Rectangle {
     private double yOffset;
     private GridPane shipGridPane;
     private Ship ship;
+    private double shipType;
     private Button startBattleButton;
-    private List<double[]> type0PositionLists;
-    private List<double[]> type1PositionLists;
-    private List<double[]> type2PositionLists;
-    private List<double[]> type3PositionLists;
-    private List<double[]> finalPositionsLists;
+    private List<double[]> type0PositionLists = new ArrayList<>();
+    private List<double[]> type1PositionLists = new ArrayList<>();
+    private List<double[]> type2PositionLists = new ArrayList<>();
+    private List<double[]> type3PositionLists = new ArrayList<>();
+    private List<double[]> finalPositionsLists = new ArrayList<>();
     @FXML // Reference to the GridPane
     private AnchorPane gamePane;
     private boolean isDraggable = true;
     private boolean movement=true;
+    private String[][] playerBoard = {
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+    };
 
 
     /**
@@ -51,9 +66,8 @@ public class DraggableShip extends Rectangle {
         this.shipGridPane = shipGridPane; // Assign the reference to the GridPane
         this.ship = ship;
         this.startBattleButton = startBattleButton;
+        this.shipType = shipType;
         setFill(Color.GRAY);
-
-        startBattleButton.setOnAction(event -> disableDragging());
 
         // Handle mouse events to drag the ship
         setOnMousePressed(mousePressedHandler);
@@ -92,6 +106,7 @@ public class DraggableShip extends Rectangle {
         setStrokeWidth(2);
         setSmooth(true);
     }
+
 
     public void disableDragging() {
             isDraggable = false; // Disable dragging
@@ -228,16 +243,16 @@ public class DraggableShip extends Rectangle {
         // Adjust the ship's position to snap to the grid
         snapToGrid();
         if (ship.getType() == 0){
-            type0PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 0, 3});
+            type0PositionLists.add(new double[]{getTranslateY(),getTranslateX(), 0, 3});
         }
         else if (ship.getType() == 1){
-            type1PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 0, 4});
+            type1PositionLists.add(new double[]{getTranslateY(),getTranslateX(), 0, 4});
         }
         else if (ship.getType() == 2){
-            type2PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 0, 2});
+            type2PositionLists.add(new double[]{getTranslateY(),getTranslateX(), 0, 2});
         }
         else if (ship.getType() == 3){
-            type3PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 0, 1});
+            type3PositionLists.add(new double[]{getTranslateY(),getTranslateX(), 0, 1});
         }
         disableDragging();
     };
@@ -282,22 +297,22 @@ public class DraggableShip extends Rectangle {
             shipGridPane.add(this, ship.getX(), ship.getY(), ship.isHorizontal() ? ship.getLength() : 1, ship.isHorizontal() ? 1 : ship.getLength());
             disableMovement();
             if (ship.getType() == 0){
-                type0PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 3});
+                type0PositionLists.removeLast();
+                type0PositionLists.add(new double[]{getTranslateY(),getTranslateX(), 1, 3});
             }
             else if (ship.getType() == 1){
-                type1PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 4});
+                type1PositionLists.removeLast();
+                type1PositionLists.add(new double[]{getTranslateY(),getTranslateX(), 1, 4});
             }
             else if (ship.getType() == 2){
-                type2PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 2});
+                type2PositionLists.removeLast();
+                type2PositionLists.add(new double[]{getTranslateY(),getTranslateX(), 1, 2});
             }
             else if (ship.getType() == 3){
-                type3PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 1});//s
+                type3PositionLists.removeLast();
+                type3PositionLists.add(new double[]{getTranslateY(),getTranslateX(), 1, 1});//s
             }
             disableDragging();
-            finalPositionsLists.add(getLastElement(type0PositionLists));
-            finalPositionsLists.add(getLastElement(type1PositionLists));
-            finalPositionsLists.add(getLastElement(type2PositionLists));
-            finalPositionsLists.add(getLastElement(type3PositionLists));
         }
     }
 
@@ -306,6 +321,23 @@ public class DraggableShip extends Rectangle {
             return null; // or throw an exception based on your needs
         }
         return list.get(list.size() - 1);
+    }
+
+    public double getHorizontalValue() {
+        if(ship.isHorizontal()){
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
+
+    public double getBoatLength(){
+        return ship.getLength();
+    }
+
+    public double getShipType(){
+        return shipType;
     }
 }
 

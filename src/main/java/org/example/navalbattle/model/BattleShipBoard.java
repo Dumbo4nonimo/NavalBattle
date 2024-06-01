@@ -1,7 +1,11 @@
 package org.example.navalbattle.model;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+
+import java.util.Arrays;
 
 /**
  * Represents the game board for the battleship game.
@@ -12,6 +16,18 @@ public class BattleShipBoard {
     private int size;
     private Ship[] ships;
     private Button startBattleButton;
+    private String[][] playerBoard = {
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+            {"", "", "", "", "", "", "", "", "", ""},
+    };
 
     /**
      * Constructs a BattleShipBoard object.
@@ -34,6 +50,7 @@ public class BattleShipBoard {
         shipGridPane.setLayoutX(30); // Move 30 pixels to the right
         shipGridPane.setLayoutY(30);
         initializeShips(); // Initialize the ships
+        startBattleButton.setOnAction(event -> interactWithShips());
     }
 
     /**
@@ -54,7 +71,74 @@ public class BattleShipBoard {
         };
         for (Ship ship : ships) {
             drawShip(ship, ship.getType());
+        }
+    }
 
+    private void interactWithShips(){
+        ObservableList<Node> children = shipGridPane.getChildren();
+
+        for (Node node : children) {
+            if (node instanceof DraggableShip) {
+                DraggableShip ship = (DraggableShip) node;
+                double matrixRow = 0;
+                double matrixColumn = 0;
+                if(ship.getShipType() == 0){
+                    matrixRow = (ship.getTranslateY() / 30) - 2;
+                    matrixColumn = (ship.getTranslateX() / 30) + 5;
+                }
+                else if(ship.getShipType() == 1){
+                    matrixRow = (ship.getTranslateY() / 30) - 3;
+                    matrixColumn = ship.getTranslateX() / 30;
+                }
+                else if(ship.getShipType() == 2){
+                    matrixRow = (ship.getTranslateY() / 30) - 1;
+                    matrixColumn = ship.getTranslateX() / 30;
+                }
+                else if(ship.getShipType() == 3){
+                    matrixRow = (ship.getTranslateY() / 30) - 3;
+                    matrixColumn = (ship.getTranslateX() / 30) + 9;
+                }
+                System.out.println("Ship Type: " + ship.getShipType());
+                System.out.println("Calculated Matrix Row: " + matrixRow);
+                System.out.println("Calculated Matrix Column: " + matrixColumn);
+                addBoatsToMatrix(matrixRow, matrixColumn, ship.getHorizontalValue(), ship.getBoatLength());
+            }
+        }
+        System.out.println(Arrays.deepToString(playerBoard));
+    }
+
+    private void addBoatsToMatrix(double startingRow, double startingColumn, double boatOrientation, double boatLength){
+        if(boatOrientation == 0){
+            for(int i = (int) startingColumn; i < boatLength + startingColumn ; i++) {
+                if(boatLength == 1){
+                    playerBoard[(int) startingRow][(int) i] = "1";
+                }
+                else if(boatLength == 2){
+                    playerBoard[(int) startingRow][(int) i] = "2";
+                }
+                else if(boatLength == 3){
+                    playerBoard[(int) startingRow][(int) i] = "3";
+                }
+                else if(boatLength == 4){
+                    playerBoard[(int) startingRow][(int) i] = "4";
+                }
+            }
+        }
+        else if(boatOrientation == 1){
+            for(int i = (int) startingRow; i < boatLength + startingRow ; i++) {
+                if(boatLength == 1){
+                    playerBoard[(int) i][(int) startingColumn] = "1";
+                }
+                else if(boatLength == 2){
+                    playerBoard[(int) i][(int) startingColumn] = "2";
+                }
+                else if(boatLength == 3){
+                    playerBoard[(int) i][(int) startingColumn] = "3";
+                }
+                else if(boatLength == 4){
+                    playerBoard[(int) i][(int) startingColumn] = "4";
+                }
+            }
         }
     }
 
