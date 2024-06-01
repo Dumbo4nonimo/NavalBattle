@@ -291,7 +291,7 @@ public class DraggableShip extends Rectangle {
                 type2PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 2});
             }
             else if (ship.getType() == 3){
-                type3PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 1});
+                type3PositionLists.add(new double[]{getTranslateX(), getTranslateY(), 1, 1});//s
             }
             disableDragging();
             finalPositionsLists.add(getLastElement(type0PositionLists));
