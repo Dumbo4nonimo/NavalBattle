@@ -20,6 +20,8 @@ public class GameNavalBattleController {
     private Button startBattleButton;
     @FXML
     private Label notificationLabel;
+    @FXML
+    private Label notificationLabel1;
 
     private Game game;
     private BattleShipBoard shipBoard;
@@ -33,7 +35,7 @@ public class GameNavalBattleController {
             game.setNotificationLabel(notificationLabel);
             game.setStartBattleButton(startBattleButton);
             game.setShipGridPane(shipGridPane); // Pasa el shipGridPane a la clase Game
-            game.initializeBoard(0, notificationLabel);
+            game.initializeBoard(0, notificationLabel, notificationLabel1);
 
         } catch (Exception e) {
             System.err.println("Error inicializando el juego: " + e.getMessage());

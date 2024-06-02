@@ -76,7 +76,11 @@ public class BattleShipBoard {
 
     private void interactWithShips(){
         ObservableList<Node> children = shipGridPane.getChildren();
-
+        int boatIdentifier = 0;
+        int count0 = -1;
+        int count1 = 2;
+        int count2 = 2;
+        int count3 = 6;
         for (Node node : children) {
             if (node instanceof DraggableShip) {
                 DraggableShip ship = (DraggableShip) node;
@@ -85,59 +89,41 @@ public class BattleShipBoard {
                 if(ship.getShipType() == 0){
                     matrixRow = (ship.getTranslateY() / 30) - 2;
                     matrixColumn = (ship.getTranslateX() / 30) + 5;
+                    count0++;
+                    boatIdentifier = count0;
+
                 }
                 else if(ship.getShipType() == 1){
                     matrixRow = (ship.getTranslateY() / 30) - 3;
                     matrixColumn = ship.getTranslateX() / 30;
+                    boatIdentifier = count1;
                 }
                 else if(ship.getShipType() == 2){
                     matrixRow = (ship.getTranslateY() / 30) - 1;
                     matrixColumn = ship.getTranslateX() / 30;
+                    count2++;
+                    boatIdentifier = count2;
                 }
                 else if(ship.getShipType() == 3){
                     matrixRow = (ship.getTranslateY() / 30) - 3;
                     matrixColumn = (ship.getTranslateX() / 30) + 9;
+                    boatIdentifier = count3;
                 }
-                System.out.println("Ship Type: " + ship.getShipType());
-                System.out.println("Calculated Matrix Row: " + matrixRow);
-                System.out.println("Calculated Matrix Column: " + matrixColumn);
-                addBoatsToMatrix(matrixRow, matrixColumn, ship.getHorizontalValue(), ship.getBoatLength());
+                addBoatsToMatrix(matrixRow, matrixColumn, ship.getHorizontalValue(), ship.getBoatLength(), boatIdentifier);
             }
         }
         System.out.println(Arrays.deepToString(playerBoard));
     }
 
-    private void addBoatsToMatrix(double startingRow, double startingColumn, double boatOrientation, double boatLength){
+    private void addBoatsToMatrix(double startingRow, double startingColumn, double boatOrientation, double boatLength, int boatIdentifier){
         if(boatOrientation == 0){
             for(int i = (int) startingColumn; i < boatLength + startingColumn ; i++) {
-                if(boatLength == 1){
-                    playerBoard[(int) startingRow][(int) i] = "1";
-                }
-                else if(boatLength == 2){
-                    playerBoard[(int) startingRow][(int) i] = "2";
-                }
-                else if(boatLength == 3){
-                    playerBoard[(int) startingRow][(int) i] = "3";
-                }
-                else if(boatLength == 4){
-                    playerBoard[(int) startingRow][(int) i] = "4";
-                }
+                playerBoard[(int) startingRow][(int) i] = String.valueOf(boatIdentifier);
             }
         }
         else if(boatOrientation == 1){
             for(int i = (int) startingRow; i < boatLength + startingRow ; i++) {
-                if(boatLength == 1){
-                    playerBoard[(int) i][(int) startingColumn] = "1";
-                }
-                else if(boatLength == 2){
-                    playerBoard[(int) i][(int) startingColumn] = "2";
-                }
-                else if(boatLength == 3){
-                    playerBoard[(int) i][(int) startingColumn] = "3";
-                }
-                else if(boatLength == 4){
-                    playerBoard[(int) i][(int) startingColumn] = "4";
-                }
+                playerBoard[(int) i][(int) startingColumn] = String.valueOf(boatIdentifier);
             }
         }
     }
@@ -185,5 +171,9 @@ public class BattleShipBoard {
      */
     public GridPane getGridPane() {
         return shipGridPane;
+    }
+
+    public String[][] getPlayerBoard(){
+        return playerBoard;
     }
 }
