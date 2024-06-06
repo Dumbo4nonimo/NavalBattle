@@ -12,11 +12,11 @@ import java.util.Arrays;
  */
 public class BattleShipBoard {
 
-    private GridPane shipGridPane;
+    private static GridPane shipGridPane;
     private int size;
-    private Ship[] ships;
-    private Button startBattleButton;
-    private String[][] playerBoard = {
+    private static Ship[] ships;
+    private static Button startBattleButton;
+    private static String[][] playerBoard = {
             {"", "", "", "", "", "", "", "", "", ""},
             {"", "", "", "", "", "", "", "", "", ""},
             {"", "", "", "", "", "", "", "", "", ""},
@@ -35,13 +35,27 @@ public class BattleShipBoard {
      * @param shipGridPane the GridPane to place the ships on
      * @param size         the size of the board
      */
-    public BattleShipBoard(GridPane shipGridPane, int size, Button startBattleButton) {
+    public BattleShipBoard(GridPane shipGridPane, int size, Button startBattleButton) { //Constructor
         this.shipGridPane = shipGridPane;
         this.size = size;
         this.startBattleButton = startBattleButton;
     }
 
+    public static String[][] getPlayerBoat(){
+        return playerBoard;
+    }
 
+    public static GridPane getShipGridPane() {
+        return shipGridPane;
+    }
+
+    public static void setShips(Ship[] ships) {
+        BattleShipBoard.ships = ships;
+    }
+
+    public static void setPlayerBoard(String[][] playerBoard) {
+        BattleShipBoard.playerBoard = playerBoard;
+    }
 
     /**
      * Initializes the board layout and the ships.
@@ -56,7 +70,7 @@ public class BattleShipBoard {
     /**
      * Initializes the ships and places them on the board.
      */
-    private void initializeShips() {
+    private void initializeShips() { //indicates the amount of ships the player can put on board
         ships = new Ship[]{
                 new Ship(5, 1, 3, true, 0),  // Ship of length 3
                 new Ship(5, 1, 3, true, 0),   // Ship of length 3
@@ -70,7 +84,7 @@ public class BattleShipBoard {
                 new Ship(9, 0, 1, true, 3)    // Ship of length 1
         };
         for (Ship ship : ships) {
-            drawShip(ship, ship.getType());
+            drawShip(ship, ship.getType()); //passes the amount of ships and types to drawship
         }
     }
 
@@ -134,7 +148,7 @@ public class BattleShipBoard {
      * @param ship     the ship to be drawn
      * @param shipType the type of the ship
      */
-    public void drawShip(Ship ship, int shipType) {
+    public static void drawShip(Ship ship, int shipType) {
         int cellSize = 30;
         int x = ship.getX() * cellSize;
         int y = ship.getY() * cellSize;
@@ -151,18 +165,18 @@ public class BattleShipBoard {
         shipGridPane.add(draggableShip, col, row, ship.isHorizontal() ? ship.getLength() : 1, ship.isHorizontal() ? 1 : ship.getLength());
     }
 
-    public GridPane getShipGridPane() {
-        return shipGridPane;
-    }
+
 
     /**
      * Gets the array of ships on the board.
      *
      * @return the array of ships
      */
-    public Ship[] getShips() {
+    public static Ship[] getShips() {
         return ships;
     }
+
+
 
     /**
      * Gets the GridPane of the board.
